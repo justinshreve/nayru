@@ -1,0 +1,32 @@
+{
+  "name": "nayru",
+  "version": "1.0.0",
+  "description": "Nayru",
+  "main": "index.js",
+  "scripts": {
+    "start": "vite",
+    "build": "vite build && node post-build.js",
+    "preview": "vite preview",
+    "test": "",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "@php-wasm/web": "^0.2.0",
+    "mock-xmlhttprequest": "^8.2.0"
+  },
+  "devDependencies": {
+    "husky": "^8.0.3",
+    "standard": "^17.1.0",
+    "vite": "^4.3.9"
+  },
+  "standard": {
+    "globals": [
+      "self"
+    ],
+    "ignore": [
+      "/node_modules/@php-wasm/web/*",
+      "/src/js/wp-*",
+      "public"
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+dist
+node_modules/*
+!node_modules/@php-wasm
+node_modules/@php-wasm/*
+!node_modules/@php-wasm/web
+node_modules/@php-wasm/web/*
+!node_modules/@php-wasm/web/php_8_2.wasm
+!node_modules/@php-wasm/web/php_8_2.js
+!node_modules/@php-wasm/web/index.js
+.DS_Store
