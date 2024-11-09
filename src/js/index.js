@@ -31,10 +31,21 @@ async function load () {
         '/wordpress/wp-content/mu-plugins/actions.php',
         actions
       )
+
+      if (process.env.NODE_ENV === 'PRODUCTION') {
+        const appPath = await window.electronAPI.getAppPath();
+
+        const fileUrl = `file://${appPath}/dist/`;
+
+        const config = await php.readFileAsText('/wordpress/wp-config.php');
+        const newConfigContent = config.replace(/define\('WP_SITEURL',\s*'.*?'\);/, `define('WP_SITEURL', '${fileUrl}');`);
+        await php.writeFile('/wordpress/wp-config.php', newConfigContent);
+      }
     
+      /*
       php.onMessage(async (data) => {
         // alert('data');
-      })
+      })*/
     },
   })
 
