@@ -11,7 +11,7 @@ function createWindow() {
   });
 
   const startUrl = process.env.NODE_ENV === 'production'
-    ? `file://${path.join(__dirname, 'dist', 'index.html')}`
+    ? `file://${path.join(__dirname, '..', 'dist', 'index.html')}`
     : 'http://localhost:5173/';
 
   mainWindow.loadURL(startUrl);

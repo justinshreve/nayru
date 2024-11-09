@@ -32,13 +32,12 @@ async function load () {
         actions
       )
 
-      if (process.env.NODE_ENV === 'PRODUCTION') {
-        const appPath = await window.electronAPI.getAppPath();
-
-        const fileUrl = `file://${appPath}/dist/`;
+      if (process.env.NODE_ENV === 'production') {
+        // TODO: In the future, this should probably load from a app URL
+        const siteUrl = window.electronAPI ? `file://${await window.electronAPI.getAppPath()}/dist/` : 'capacitor://localhost/';
 
         const config = await php.readFileAsText('/wordpress/wp-config.php');
-        const newConfigContent = config.replace(/define\('WP_SITEURL',\s*'.*?'\);/, `define('WP_SITEURL', '${fileUrl}');`);
+        const newConfigContent = config.replace(/define\('WP_SITEURL',\s*'.*?'\);/, `define('WP_SITEURL', '${siteUrl}');`);
         await php.writeFile('/wordpress/wp-config.php', newConfigContent);
       }
     
