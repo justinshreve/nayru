@@ -137,7 +137,8 @@ export async function main ( {
       }
 
       // External URL: allow navigation.
-      if (target.href.startsWith('http')) {
+      const baseUrl = new URL(currentUrl).origin + '/';
+      if (target.href.startsWith('http') && !target.href.startsWith(baseUrl)) {
         target.target = '_blank'
         return
       }
